@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import type { Movie } from "../../types/movie";
 import css from "./MovieModal.module.css";
+import { createPortal } from "react-dom";
 interface MovieModalProps {
-  movies: Movie;
+  movie: Movie;
   onClose: () => void;
 }
 export default function MovieModal({
-  movies: { title, overview, release_date, vote_average, backdrop_path },
+  movie: { title, overview, release_date, vote_average, backdrop_path },
   onClose,
 }: MovieModalProps) {
   const backdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -24,9 +25,10 @@ export default function MovieModal({
     document.addEventListener("keydown", handleKeydown);
     return () => {
       document.removeEventListener("keydown", handleKeydown);
+      document.body.style.overflow = "hidden";
     };
   }, [onClose]);
-  return (
+  return createPortal(
     <div
       className={css.backdrop}
       role="dialog"
@@ -57,6 +59,7 @@ export default function MovieModal({
           </p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
