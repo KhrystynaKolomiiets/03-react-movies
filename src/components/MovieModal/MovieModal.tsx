@@ -23,9 +23,10 @@ export default function MovieModal({
       }
     };
     document.addEventListener("keydown", handleKeydown);
+    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "";
     };
   }, [onClose]);
   return createPortal(
