@@ -22,11 +22,12 @@ export default function MovieModal({
         onClose();
       }
     };
+    const defaultScroll = document.body.style.overflow;
     document.addEventListener("keydown", handleKeydown);
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = defaultScroll;
     };
   }, [onClose]);
   return createPortal(
