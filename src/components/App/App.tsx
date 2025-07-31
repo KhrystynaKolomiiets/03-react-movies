@@ -15,7 +15,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  // useEffect(() => {}, []);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -44,7 +43,7 @@ export default function App() {
     }
   };
   return (
-    <div className={css.ap}>
+    <div className={css.app}>
       <Toaster />
       <SearchBar onSubmit={handleSubmit} />
       {isError ? (
